@@ -1,7 +1,7 @@
 ﻿
 namespace BubbleShooter.Controllers
 {
-    public sealed class MainMenuLifeCycleController : SceneLifecycleController
+    public sealed class MainMenuLifeCycleBehaviour : SceneLifecycleBehaviour
     {
         protected override void Awake()
         {

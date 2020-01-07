@@ -6,7 +6,7 @@ using BubbleShooter.Helpers;
 
 namespace BubbleShooter.Controllers
 {
-    public abstract class SceneLifecycleController : MonoBehaviour
+    public abstract class SceneLifecycleBehaviour : MonoBehaviour
     {
         private List<IInitializable> _initializeControllers = new List<IInitializable>(ConstantsHelper.MinArraySize);
         private List<IExecutable> _executeControllers = new List<IExecutable>(ConstantsHelper.MinArraySize);

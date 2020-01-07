@@ -4,7 +4,7 @@
     {
         None       = 0,
         MainMenu   = 1,
-        Score    = 2,
+        Score      = 2,
         About      = 3,
         ExitDialog = 4
     }

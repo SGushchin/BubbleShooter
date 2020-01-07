@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
 using BubbleShooter.Interfaces;
 
@@ -6,77 +7,63 @@ using BubbleShooter.Interfaces;
 
 namespace BubbleShooter.Helpers
 {
-    public sealed class PoolObjects
+    public sealed class PoolObjects //: IDisposable
     {
-        private Queue<GameObject> poolQueue = new Queue<GameObject>();
+        //private Queue<GameObject> poolQueue = new Queue<GameObject>();
 
-        private GameObject _prefab;
+        //public PoolObjects(int size)
+        //{
+        //    poolQueue = new Queue<GameObject>(size);
 
-        public PoolObjects(GameObject poolObject, int amount)
-        {
-            _prefab = poolObject;
+        //    for (int i = 0; i < size; i++)
+        //    {
+        //        var temp = _factory.GetInstance();
+        //        temp.SetActive(false);
+        //        poolQueue.Enqueue(temp);
+        //    }
+        //}
 
-            poolQueue = new Queue<GameObject>(amount);
+        ///// <summary>
+        ///// Получить объект из пула
+        ///// </summary>
+        ///// <param name="activateOnReturn"></param>
+        ///// <returns></returns>
+        //public GameObject GetObject(bool activateOnReturn = false)
+        //{
+        //    var obj = poolQueue.Count > 0 ? poolQueue.Dequeue() : _factory.GetInstance();
 
-            for (int i = 0; i < amount; i++)
-            {
-                var temp = Object.Instantiate(poolObject);
-                temp.SetActive(false);
-                poolQueue.Enqueue(temp);
-            }
-        }
+        //    if (activateOnReturn)
+        //    {
+        //        obj.SetActive(true);
+        //    }
 
-        /// <summary>
-        /// Получить объект из пула
-        /// </summary>
-        /// <param name="activateOnReturn"></param>
-        /// <returns></returns>
-        public GameObject GetObject(bool activateOnReturn = false)
-        {
-            var obj = poolQueue.Count > 0 ? poolQueue.Dequeue() : Object.Instantiate(_prefab);
+        //    return obj;
+        //}
 
-            if (activateOnReturn)
-            {
-                obj.SetActive(true);
-            }
+        ///// <summary>
+        ///// Вернуть объект в пул
+        ///// </summary>
+        ///// <param name="gameObject"></param>
+        //public void ReturnToPool(GameObject poolObject)
+        //{
+        //    poolObject.SetActive(false);
+            
+        //    poolQueue.Enqueue(poolObject);
+        //}
 
-            return obj;
-        }
-
-        /// <summary>
-        /// Вернуть объект в пул
-        /// </summary>
-        /// <param name="gameObject"></param>
-        public void ReturnToPool(GameObject gameObject)
-        {
-            if (gameObject.activeSelf)
-            {
-                gameObject.SetActive(false);
-            }
-
-            poolQueue.Enqueue(gameObject);
-        }
-
-        /// <summary>
-        /// Получить размер пула
-        /// </summary>
-        /// <returns></returns>
-        public int GetPoolSize() =>
-            poolQueue.Count;
+        ///// <summary>
+        ///// Получить размер пула
+        ///// </summary>
+        ///// <returns></returns>
+        //public int GetPoolSize() => poolQueue.Count;
         
-
-        /// <summary>
-        /// Очистить пул
-        /// </summary>
-        public void ClearPool()
-        {
-            while (poolQueue.Count != 0)
-            {
-                Object.DestroyImmediate(poolQueue.Dequeue());
-            }
-
-            poolQueue.Clear();
-        }
+        //public void Dispose()
+        //{
+        //    while (poolQueue.Count != 0)
+        //    {
+        //        GameObject.Destroy(poolQueue.Dequeue());
+        //    }
+        //}
     }
 
 
